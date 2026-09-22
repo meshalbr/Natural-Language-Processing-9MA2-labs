@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Editors and tools
+.vscode/
+.idea/
+.claude/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large downloaded datasets (see README for links)
+*.zip
+**/dataset/IMDB Dataset.csv
+**/dataset/DisneylandReviews.csv
+**/dataset/True.csv
+**/dataset/Fake.csv
+**/dataset/Amazon_Unlocked_Mobile.csv

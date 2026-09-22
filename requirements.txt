@@ -1,0 +1,9 @@
+jupyter
+pandas
+numpy
+nltk
+spacy
+scikit-learn
+gensim
+kagglehub
+emoji
