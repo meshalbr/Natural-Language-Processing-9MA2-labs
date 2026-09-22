@@ -29,7 +29,7 @@ labNN-topic/
 └── dataset/           dataset files or a link to download them (only where needed)
 ```
 
-The files in `code/` are numbered in the order they appear in the notebook. Each file starts with a comment naming the section it comes from, and `# %%` markers separate the original cells so the files also run cell-by-cell in VS Code or Spyder.
+The files in `code/` are numbered in the order they appear in the notebook and contain the notebook cells exactly as written. Each file starts with a comment naming the section it comes from, and `# %%` markers separate the original cells so the files run cell-by-cell in VS Code's interactive window or in Spyder. A few cells use notebook-only syntax (`!pip install nltk`, `re.match?`); those files say so in their header and need Jupyter or the interactive window rather than plain `python file.py`.
 
 ## Setup
 

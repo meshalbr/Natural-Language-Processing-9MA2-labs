@@ -1,10 +1,11 @@
 # Lab 2 - Text Pre-processing and Regular Expressions
 # Section: match
 # Extracted from Lab2_Text_Preprocessing_and_Regex.ipynb; each '# %%' marks one original notebook cell.
+# Note: this file uses notebook syntax (lines like !pip install or re.match?). Run it cell by cell in Jupyter or the VS Code interactive window (Shift+Enter).
 
 # %% cell 1
 import re
-# (IPython help) re.match?
+re.match?
 
 # %% cell 2
 import re
