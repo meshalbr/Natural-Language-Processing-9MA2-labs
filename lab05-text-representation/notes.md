@@ -61,9 +61,7 @@ df
 Output:
 
 ```text
-data  digital  economy        is       new       of       oil      the
-0  0.243777  0.34262  0.34262  0.243777  0.000000  0.34262  0.243777  0.68524
-1  0.448321  0.00000  0.00000  0.448321  0.630099  0.00000  0.448321  0.00000
+NameError: name 'pd' is not defined
 ```
 
 # Cosine similarity

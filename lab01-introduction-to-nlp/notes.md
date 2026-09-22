@@ -76,7 +76,7 @@ https://www.nltk.org/
 a collection of written texts, especially the entire works of a particular author or a body of writing on a particular subject.
 
 ```python
-# (notebook shell/magic command) !pip install nltk
+!pip install nltk
 ```
 
 ```python
@@ -145,7 +145,30 @@ Students should work in groups and search online for one of the different types 
 Download and open the dataset.
 
 ```python
-# (run in a terminal) conda install kagglehub
+conda install kagglehub
+```
+
+Output:
+
+```text
+Jupyter detected...
+Note: you may need to restart the kernel to use updated packages.
+
+==> WARNING: A newer version of conda exists. <==
+    current version: 25.5.1
+    latest version: 25.7.0
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+3 channel Terms of Service accepted
+Channels:
+ - defaults
+Platform: win-64
+Solving environment: done
+
+# All requested packages already installed.
 ```
 
 ```python

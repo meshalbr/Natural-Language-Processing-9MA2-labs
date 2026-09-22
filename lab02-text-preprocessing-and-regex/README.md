@@ -7,6 +7,7 @@ Two parts. The first covers regular expressions with Python's `re` module. The s
 | File | Content |
 |------|---------|
 | [Lab2_Text_Preprocessing_and_Regex.ipynb](Lab2_Text_Preprocessing_and_Regex.ipynb) | The lab notebook: text, code and outputs, run cell by cell |
+| [Lab2_Text_Preprocessing_and_Regex.py](Lab2_Text_Preprocessing_and_Regex.py) | The same notebook as one Python file, cell by cell (`# %%` cells, run with Shift+Enter in VS Code) |
 | [notes.md](notes.md) | The whole lab as one readable Markdown document (text, code, outputs, including the regex symbol reference table) |
 
 ## Topics covered

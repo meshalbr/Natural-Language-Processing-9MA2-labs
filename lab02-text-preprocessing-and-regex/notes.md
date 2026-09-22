@@ -114,7 +114,7 @@ The match function is similar to search, but it only tries to match the pattern 
 
 ```python
 import re
-# (IPython help) re.match?
+re.match?
 ```
 
 Output:
@@ -124,7 +124,7 @@ Signature: re.match(pattern, string, flags=0)
 Docstring:
 Try to apply the pattern at the start of the string, returning
 a Match object, or None if no match was found.
-File:      c:\users\sumay\anaconda3\lib\re\__init__.py
+File:      c:\users\mesha\miniconda3\lib\re\__init__.py
 Type:      function
 ```
 
@@ -212,7 +212,7 @@ count = specify number of matches you want to replace
 ```python
 import re
 
-# (IPython help) re.sub?
+re.sub?
 ```
 
 Output:
@@ -270,7 +270,7 @@ The first step of the NLP process is gathering the data (a sentence) and breakin
 - **Sentence Tokenization**
 
 ```python
-# (notebook shell/magic command) !pip install nltk
+!pip install nltk
 nltk.download('punkt') #Punkt is a pretrained unsupervised machine learning tokenizer model
 ```
 

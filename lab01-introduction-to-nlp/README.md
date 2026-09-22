@@ -7,6 +7,7 @@ An overview lab: what NLP is, why it is hard, common text file types, the main N
 | File | Content |
 |------|---------|
 | [Lab1_Introduction_to_NLP.ipynb](Lab1_Introduction_to_NLP.ipynb) | The lab notebook: text, code and outputs, run cell by cell |
+| [Lab1_Introduction_to_NLP.py](Lab1_Introduction_to_NLP.py) | The same notebook as one Python file, cell by cell (`# %%` cells, run with Shift+Enter in VS Code) |
 | [notes.md](notes.md) | The whole lab as one readable Markdown document (text, figures, code, outputs) |
 | [images/](images/) | Figures used in the lab |
 | [dataset/README.md](dataset/README.md) | Course link to the dataset files |

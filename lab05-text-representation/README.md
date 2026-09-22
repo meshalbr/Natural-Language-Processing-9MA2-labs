@@ -7,6 +7,7 @@ How to turn text into numbers a model can use. Two techniques are covered: TF-ID
 | File | Content |
 |------|---------|
 | [Lab5_Text_Representation.ipynb](Lab5_Text_Representation.ipynb) | The lab notebook: text, code and outputs, run cell by cell |
+| [Lab5_Text_Representation.py](Lab5_Text_Representation.py) | The same notebook as one Python file, cell by cell (`# %%` cells, run with Shift+Enter in VS Code) |
 | [notes.md](notes.md) | The whole lab as one readable Markdown document (text, formulas, code, outputs) |
 | [images/](images/) | Figures used in the lab |
 | [dataset/simpsons_script_lines.csv](dataset/simpsons_script_lines.csv) | The Simpsons script lines used in the tasks (columns: `raw_character_text`, `spoken_words`) |

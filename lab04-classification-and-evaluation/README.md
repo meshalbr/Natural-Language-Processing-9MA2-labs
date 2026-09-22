@@ -7,6 +7,7 @@ A complete text classification pipeline for sentiment analysis. The notebook tak
 | File | Content |
 |------|---------|
 | [Lab4_Classification_and_Evaluation.ipynb](Lab4_Classification_and_Evaluation.ipynb) | The lab notebook: text, code and outputs, run cell by cell |
+| [Lab4_Classification_and_Evaluation.py](Lab4_Classification_and_Evaluation.py) | The same notebook as one Python file, cell by cell (`# %%` cells, run with Shift+Enter in VS Code) |
 | [notes.md](notes.md) | The whole lab as one readable Markdown document (text, dataset description, code, outputs) |
 | [images/](images/) | Figure used in the lab |
 

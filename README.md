@@ -21,12 +21,13 @@ Every lab folder follows the same structure:
 labNN-topic/
 ├── README.md          what the lab covers, the tasks, and how to run it
 ├── LabN_Topic.ipynb   the lab notebook: text, code and outputs, run cell by cell
+├── LabN_Topic.py      the same notebook as one Python file, cell by cell (# %% cells)
 ├── notes.md           the whole lab as one readable Markdown document (text, code, outputs)
 ├── images/            figures used in the lab (only where the lab has any)
 └── dataset/           dataset files or a link to download them (only where needed)
 ```
 
-The notebook is the main file. Open it in VS Code or Jupyter and run each cell with Shift+Enter; the outputs from the lab session are saved inside it. `notes.md` is the same content as plain Markdown, so it reads well on GitHub without opening the notebook.
+The notebook is the main file. Open it in VS Code or Jupyter and run each cell with Shift+Enter; the outputs from the lab session are saved inside it. The `.py` file is the same notebook in VS Code's cell format: open it and press Shift+Enter on any `# %%` cell to run it in the interactive window. `notes.md` is the same content as plain Markdown, so it reads well on GitHub without opening the notebook.
 
 ## Setup
 

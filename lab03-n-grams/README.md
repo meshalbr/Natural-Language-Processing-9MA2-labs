@@ -7,6 +7,7 @@ Building n-gram language models with NLTK: unigrams, bigrams and trigrams, how t
 | File | Content |
 |------|---------|
 | [Lab3_N_Grams.ipynb](Lab3_N_Grams.ipynb) | The lab notebook: text, code and outputs, run cell by cell |
+| [Lab3_N_Grams.py](Lab3_N_Grams.py) | The same notebook as one Python file, cell by cell (`# %%` cells, run with Shift+Enter in VS Code) |
 | [notes.md](notes.md) | The whole lab as one readable Markdown document (text, formulas, code, outputs) |
 | [images/](images/) | Figure used in the lab |
 
