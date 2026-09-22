@@ -7,7 +7,7 @@ Building n-gram language models with NLTK: unigrams, bigrams and trigrams, how t
 | File | Content |
 |------|---------|
 | [Lab3_N_Grams.ipynb](Lab3_N_Grams.ipynb) | Original notebook |
-| [notes.md](notes.md) | The lecture notes with the probability formulas |
+| [notes.md](notes.md) | The whole lab as one readable document: explanations, formulas, code and outputs |
 | [code/01_unigram.py](code/01_unigram.py) | Generate unigrams with `nltk.util.ngrams` |
 | [code/02_calculating-probabilities-in-unigram-mod.py](code/02_calculating-probabilities-in-unigram-mod.py) | Count words and compute unigram probabilities |
 | [code/03_bigram-method-1.py](code/03_bigram-method-1.py) | Bigrams with `nltk.bigrams` |

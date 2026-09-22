@@ -7,7 +7,8 @@ How to turn text into numbers a model can use. Two techniques are covered: TF-ID
 | File | Content |
 |------|---------|
 | [Lab5_Text_Representation.ipynb](Lab5_Text_Representation.ipynb) | Original notebook |
-| [notes.md](notes.md) | The lecture notes with the TF-IDF and cosine similarity formulas |
+| [notes.md](notes.md) | The whole lab as one readable document: explanations, formulas, code and outputs |
+| [images/](images/) | Figures referenced from the notes |
 | [code/01_tf-idf.py](code/01_tf-idf.py) | `TfidfVectorizer` on three short documents, shown as a DataFrame |
 | [code/02_cosine-similarity.py](code/02_cosine-similarity.py) | TF-IDF vectors plus `cosine_similarity` between documents |
 | [code/03_word2vec.py](code/03_word2vec.py) | Tokenize a news dataset, train a skip-gram `Word2Vec`, query `wv.similarity` and `wv.most_similar` |

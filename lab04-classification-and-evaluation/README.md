@@ -7,7 +7,7 @@ A complete text classification pipeline for sentiment analysis. The notebook tak
 | File | Content |
 |------|---------|
 | [Lab4_Classification_and_Evaluation.ipynb](Lab4_Classification_and_Evaluation.ipynb) | Original notebook |
-| [notes.md](notes.md) | The lecture notes and dataset description |
+| [notes.md](notes.md) | The whole lab as one readable document: explanations, dataset description, code and outputs |
 | [code/01_load-and-clean-dataset.py](code/01_load-and-clean-dataset.py) | Load the CSV, check and drop missing values, map ratings to sentiment labels |
 | [code/02_preprocess-text.py](code/02_preprocess-text.py) | Lowercase, remove punctuation, tokenize the reviews |
 | [code/03_train-test-split-and-tfidf.py](code/03_train-test-split-and-tfidf.py) | 80/20 train-test split and TF-IDF vectorization (1000 features) |

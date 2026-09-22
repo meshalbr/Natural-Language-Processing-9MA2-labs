@@ -7,7 +7,7 @@ Two parts. The first covers regular expressions with Python's `re` module. The s
 | File | Content |
 |------|---------|
 | [Lab2_Text_Preprocessing_and_Regex.ipynb](Lab2_Text_Preprocessing_and_Regex.ipynb) | Original notebook |
-| [notes.md](notes.md) | The lecture notes, including the regex symbol reference table |
+| [notes.md](notes.md) | The whole lab as one readable document: explanations (including the regex symbol reference table), code and outputs |
 | [code/01_search.py](code/01_search.py) | `re.search` |
 | [code/02_match.py](code/02_match.py) | `re.match` and how it differs from `search` |
 | [code/03_findall.py](code/03_findall.py) | `re.findall` |

@@ -7,7 +7,7 @@ An overview lab: what NLP is, why it is hard, common text file types, the main N
 | File | Content |
 |------|---------|
 | [Lab1_Introduction_to_NLP.ipynb](Lab1_Introduction_to_NLP.ipynb) | Original notebook |
-| [notes.md](notes.md) | The lecture notes from the notebook (with figures) |
+| [notes.md](notes.md) | The whole lab as one readable document: explanations, figures, code and outputs |
 | [code/01_what-are-corpus-corpora.py](code/01_what-are-corpus-corpora.py) | Install and import NLTK |
 | [code/02_load-imdb-dataset.py](code/02_load-imdb-dataset.py) | Download the IMDB reviews dataset with `kagglehub`, load it with pandas, inspect it (`describe`, `info`, class distribution) |
 | [images/](images/) | Figures referenced from the notes |

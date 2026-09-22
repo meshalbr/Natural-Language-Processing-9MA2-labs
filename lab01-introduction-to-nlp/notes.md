@@ -1,6 +1,9 @@
-# Lab 1 - Introduction to Natural Language Processing - Notes
+# Lab 1 - Introduction to Natural Language Processing
 
-Markdown notes extracted from the lab notebook ($(System.Collections.Hashtable.out)). Code lives in the code/ folder.
+This file is the complete lab as a readable document: the explanations, the code, and the printed outputs, in the same order as the notebook [Lab1_Introduction_to_NLP.ipynb](Lab1_Introduction_to_NLP.ipynb).
+The same code is also available as small runnable files in the [code/](code/) folder.
+
+---
 
 # Introduction to Natural Language processing
 
@@ -45,9 +48,9 @@ It’s the nature of the human language that makes NLP difficult.
 ### In ML terms, why is NLP hard?
 
 **1. Input:** Large, discrete, open-ended input state spaces
-    
+
 **2. Output:** Variable length output spaces
-    
+
 **3. Algorithms:** Recycled from other fields
 
 ## Top Used Text File Types
@@ -71,6 +74,14 @@ https://www.nltk.org/
 #### What are Corpus / Corpora?
 
 a collection of written texts, especially the entire works of a particular author or a body of writing on a particular subject.
+
+```python
+# (notebook shell/magic command) !pip install nltk
+```
+
+```python
+import nltk
+```
 
 ### Arabic Libraries (Extra)
 
@@ -99,38 +110,126 @@ Identifying sentiments and opinions stated in a text.
 ![e322457d-6d42-4f82-999a-a2a446d5862e.png](images/img06_e322457d-6d42-4f82-999a-a2a446d5862e.png)
 
 #### 1. Text Acquisition:
-Obtain the text data from a source, such as a file, a web page, or a database.‎
+Obtain the text data from a source, such as a file, a web page, or a database.
 
-#### 2.‎	Text Preprocessing:‎
--	**Tokenization:** Split the text into individual words or tokens. 
--	**Lowercasing:** Convert all tokens to lowercase to ensure uniformity.‎
--	**Removing Punctuation:** Strip away punctuation marks from tokens.‎
--	**Stopword Removal:** Eliminate common words (e.g., "and," "the," "is") that may not carry ‎significant meaning.‎
--	**Stemming:** Removes prefixes/suffixes to get a root form. (Running -> run)
-- **Lemmatization:** Converts word to base/dictionary form (lemma). (better -> good).‎
+#### 2. Text Preprocessing:
+- **Tokenization:** Split the text into individual words or tokens.
+- **Lowercasing:** Convert all tokens to lowercase to ensure uniformity.
+- **Removing Punctuation:** Strip away punctuation marks from tokens.
+- **Stopword Removal:** Eliminate common words (e.g., "and," "the," "is") that may not carry significant meaning.
+- **Stemming:** Removes prefixes/suffixes to get a root form. (Running -> run)
+- **Lemmatization:** Converts word to base/dictionary form (lemma). (better -> good).
 
-#### 3.‎	Feature Extraction:‎
--	**Bag-of-Words (BoW):** Create a vector representation of the text using the frequency of each ‎token in the document.‎
--	**TF-IDF (Term Frequency-Inverse Document Frequency):** Assign weights to tokens based ‎on their importance in the document relative to the entire corpus.‎
+#### 3. Feature Extraction:
+- **Bag-of-Words (BoW):** Create a vector representation of the text using the frequency of each token in the document.
+- **TF-IDF (Term Frequency-Inverse Document Frequency):** Assign weights to tokens based on their importance in the document relative to the entire corpus.
 
-#### 4.‎	Model Building:‎
-Choose a machine learning model for sentiment analysis, such as a Naive Bayes classifier, ‎Support Vector Machine (SVM), or a neural network.‎
+#### 4. Model Building:
+Choose a machine learning model for sentiment analysis, such as a Naive Bayes classifier, Support Vector Machine (SVM), or a neural network.
 
-___________________________________________________________________________________
+---
 
 ### Task#1:
 
 Students should work in groups and search online for one of the different types of datasets.
-•	CSV
-•	Text Files
-•	JSON
-•	SQL
-•	HTML
-•	PDF
-•	DOCX
-
-
+- CSV
+- Text Files
+- JSON
+- SQL
+- HTML
+- PDF
+- DOCX
 
 ### Task#2:
 
 Download and open the dataset.
+
+```python
+# (run in a terminal) conda install kagglehub
+```
+
+```python
+import kagglehub
+
+# IMDB Dataset of 50K Movie Reviews
+path = kagglehub.dataset_download("lakshmi25npathi/imdb-dataset-of-50k-movie-reviews")
+
+print("Path to dataset files:", path)
+```
+
+Output:
+
+```text
+Path to dataset files: C:\Users\sumay\.cache\kagglehub\datasets\lakshmi25npathi\imdb-dataset-of-50k-movie-reviews\versions\1
+```
+
+```python
+import pandas as pd
+
+# load the CSV file in a dataframe
+df = pd.read_csv("IMDB Dataset.csv")
+
+# Show the first few rows
+df.head()
+```
+
+Output:
+
+```text
+review sentiment
+0  One of the other reviewers has mentioned that ...  positive
+1  A wonderful little production. <br /><br />The...  positive
+2  I thought this was a wonderful way to spend ti...  positive
+3  Basically there's a family where a little boy ...  negative
+4  Petter Mattei's "Love in the Time of Money" is...  positive
+```
+
+```python
+df.describe()
+```
+
+Output:
+
+```text
+review sentiment
+count                                               50000     50000
+unique                                              49582         2
+top     Loved today's show!!! It was a variety and not...  positive
+freq                                                    5     25000
+```
+
+```python
+df.info()
+```
+
+Output:
+
+```text
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 50000 entries, 0 to 49999
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype 
+---  ------     --------------  ----- 
+ 0   review     50000 non-null  object
+ 1   sentiment  50000 non-null  object
+dtypes: object(2)
+memory usage: 781.4+ KB
+```
+
+```python
+# Check class distribution
+print(df['sentiment'].value_counts())
+```
+
+Output:
+
+```text
+sentiment
+positive    25000
+negative    25000
+Name: count, dtype: int64
+```
+
+```python
+# your solution here
+```

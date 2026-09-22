@@ -21,7 +21,7 @@ Every lab folder follows the same structure:
 labNN-topic/
 ├── README.md          what the lab covers, the tasks, and how to run it
 ├── LabN_Topic.ipynb   the original notebook as given in the lab
-├── notes.md           the notebook's explanations extracted as plain Markdown
+├── notes.md           the whole lab as one readable document: explanations, code and outputs
 ├── code/              the notebook's code split into small numbered .py files
 │   ├── 01_....py
 │   └── 02_....py
