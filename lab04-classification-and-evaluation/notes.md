@@ -1,7 +1,7 @@
 # Lab 4 - Classification and Evaluation
 
 This file is the complete lab as a readable document: the explanations, the code, and the printed outputs, in the same order as the notebook [Lab4_Classification_and_Evaluation.ipynb](Lab4_Classification_and_Evaluation.ipynb).
-The same code is also available as small runnable files in the [code/](code/) folder.
+Open the notebook to run the cells yourself.
 
 ---
 

@@ -1,7 +1,7 @@
 # Natural Language Processing (9MA2) - Labs
 
 Lab work for the Natural Language Processing course (section 9MA2) at Imam Abdulrahman Bin Faisal University (IAU).
-Each lab lives in its own folder with the original notebook, the lecture notes as Markdown, and the code split into small, runnable Python files.
+Each lab lives in its own folder with the notebook (run it cell by cell), a Markdown version of the whole lab, and the figures and datasets it uses.
 
 ## Labs
 
@@ -20,16 +20,13 @@ Every lab folder follows the same structure:
 ```
 labNN-topic/
 ├── README.md          what the lab covers, the tasks, and how to run it
-├── LabN_Topic.ipynb   the original notebook as given in the lab
-├── notes.md           the whole lab as one readable document: explanations, code and outputs
-├── code/              the notebook's code split into small numbered .py files
-│   ├── 01_....py
-│   └── 02_....py
-├── images/            figures used in the notes (only where the lab has any)
+├── LabN_Topic.ipynb   the lab notebook: text, code and outputs, run cell by cell
+├── notes.md           the whole lab as one readable Markdown document (text, code, outputs)
+├── images/            figures used in the lab (only where the lab has any)
 └── dataset/           dataset files or a link to download them (only where needed)
 ```
 
-The files in `code/` are numbered in the order they appear in the notebook and contain the notebook cells exactly as written. Each file starts with a comment naming the section it comes from, and `# %%` markers separate the original cells so the files run cell-by-cell in VS Code's interactive window or in Spyder. A few cells use notebook-only syntax (`!pip install nltk`, `re.match?`); those files say so in their header and need Jupyter or the interactive window rather than plain `python file.py`.
+The notebook is the main file. Open it in VS Code or Jupyter and run each cell with Shift+Enter; the outputs from the lab session are saved inside it. `notes.md` is the same content as plain Markdown, so it reads well on GitHub without opening the notebook.
 
 ## Setup
 
@@ -41,11 +38,10 @@ python -m spacy download en_core_web_sm
 python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab'); nltk.download('wordnet'); nltk.download('stopwords')"
 ```
 
-Open any notebook with Jupyter, or run a code file directly, for example:
+Then open a notebook, for example:
 
 ```bash
 jupyter notebook lab02-text-preprocessing-and-regex/Lab2_Text_Preprocessing_and_Regex.ipynb
-python lab02-text-preprocessing-and-regex/code/01_search.py
 ```
 
 ## Datasets

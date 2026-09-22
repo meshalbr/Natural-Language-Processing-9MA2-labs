@@ -1,7 +1,7 @@
 # Lab 2 - Text Pre-processing and Regular Expressions
 
 This file is the complete lab as a readable document: the explanations, the code, and the printed outputs, in the same order as the notebook [Lab2_Text_Preprocessing_and_Regex.ipynb](Lab2_Text_Preprocessing_and_Regex.ipynb).
-The same code is also available as small runnable files in the [code/](code/) folder.
+Open the notebook to run the cells yourself.
 
 ---
 

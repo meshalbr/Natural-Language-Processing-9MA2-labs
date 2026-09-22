@@ -6,15 +6,16 @@ A complete text classification pipeline for sentiment analysis. The notebook tak
 
 | File | Content |
 |------|---------|
-| [Lab4_Classification_and_Evaluation.ipynb](Lab4_Classification_and_Evaluation.ipynb) | Original notebook |
-| [notes.md](notes.md) | The whole lab as one readable document: explanations, dataset description, code and outputs |
-| [code/01_load-and-clean-dataset.py](code/01_load-and-clean-dataset.py) | Load the CSV, check and drop missing values, map ratings to sentiment labels |
-| [code/02_preprocess-text.py](code/02_preprocess-text.py) | Lowercase, remove punctuation, tokenize the reviews |
-| [code/03_train-test-split-and-tfidf.py](code/03_train-test-split-and-tfidf.py) | 80/20 train-test split and TF-IDF vectorization (1000 features) |
-| [code/04_train-and-evaluate-svm.py](code/04_train-and-evaluate-svm.py) | Train `SVC(kernel='linear')`, predict, print accuracy and classification report |
-| [images/](images/) | Figure referenced from the notes |
+| [Lab4_Classification_and_Evaluation.ipynb](Lab4_Classification_and_Evaluation.ipynb) | The lab notebook: text, code and outputs, run cell by cell |
+| [notes.md](notes.md) | The whole lab as one readable Markdown document (text, dataset description, code, outputs) |
+| [images/](images/) | Figure used in the lab |
 
-The four code files are steps of one pipeline: run them in order in the same session, or run the notebook.
+## Pipeline in the notebook
+
+1. Load the CSV, check and drop missing values, map ratings to sentiment labels.
+2. Lowercase the reviews, remove punctuation, tokenize.
+3. 80/20 train-test split and TF-IDF vectorization (1000 features).
+4. Train `SVC(kernel='linear')`, predict, print accuracy and the classification report.
 
 ## Dataset
 
@@ -46,6 +47,7 @@ Using the [Amazon Reviews of Unlocked Mobile Phones](https://www.kaggle.com/data
 
 ```bash
 pip install pandas scikit-learn nltk
+jupyter notebook Lab4_Classification_and_Evaluation.ipynb
 ```
 
-Download `DisneylandReviews.csv` and update the path in `code/01_load-and-clean-dataset.py` (the notebook uses the Colab path `/content/DisneylandReviews.csv`).
+Download `DisneylandReviews.csv` and update the path in the first code cell (the notebook uses the Colab path `/content/DisneylandReviews.csv`).

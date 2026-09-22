@@ -1,7 +1,7 @@
 # Lab 5 - Text Representation
 
 This file is the complete lab as a readable document: the explanations, the code, and the printed outputs, in the same order as the notebook [Lab5_Text_Representation.ipynb](Lab5_Text_Representation.ipynb).
-The same code is also available as small runnable files in the [code/](code/) folder.
+Open the notebook to run the cells yourself.
 
 ---
 

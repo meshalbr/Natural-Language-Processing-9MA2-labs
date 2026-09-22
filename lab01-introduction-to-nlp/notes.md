@@ -1,7 +1,7 @@
 # Lab 1 - Introduction to Natural Language Processing
 
 This file is the complete lab as a readable document: the explanations, the code, and the printed outputs, in the same order as the notebook [Lab1_Introduction_to_NLP.ipynb](Lab1_Introduction_to_NLP.ipynb).
-The same code is also available as small runnable files in the [code/](code/) folder.
+Open the notebook to run the cells yourself.
 
 ---
 

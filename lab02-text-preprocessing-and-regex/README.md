@@ -6,28 +6,17 @@ Two parts. The first covers regular expressions with Python's `re` module. The s
 
 | File | Content |
 |------|---------|
-| [Lab2_Text_Preprocessing_and_Regex.ipynb](Lab2_Text_Preprocessing_and_Regex.ipynb) | Original notebook |
-| [notes.md](notes.md) | The whole lab as one readable document: explanations (including the regex symbol reference table), code and outputs |
-| [code/01_search.py](code/01_search.py) | `re.search` |
-| [code/02_match.py](code/02_match.py) | `re.match` and how it differs from `search` |
-| [code/03_findall.py](code/03_findall.py) | `re.findall` |
-| [code/04_sub.py](code/04_sub.py) | `re.sub` with flags and count |
-| [code/05_tokenization.py](code/05_tokenization.py) | Sentence and word tokenization with NLTK, compared with `str.split` |
-| [code/06_lower-casting.py](code/06_lower-casting.py) | Lower casing |
-| [code/07_what-is-porterstemmer.py](code/07_what-is-porterstemmer.py) | Porter stemmer |
-| [code/08_what-is-snowballstemmer.py](code/08_what-is-snowballstemmer.py) | Snowball stemmer |
-| [code/09_comparing-between-porter-and-snowball.py](code/09_comparing-between-porter-and-snowball.py) | Porter vs Snowball on the same words |
-| [code/10_lemmatization.py](code/10_lemmatization.py) | WordNet lemmatizer, with and without a part-of-speech tag |
-| [code/11_stop-words-in-spacy.py](code/11_stop-words-in-spacy.py) | spaCy stop words: list them, check a word, add and remove stop words |
-| [code/12_stop-words-in-nltk.py](code/12_stop-words-in-nltk.py) | NLTK stop words |
+| [Lab2_Text_Preprocessing_and_Regex.ipynb](Lab2_Text_Preprocessing_and_Regex.ipynb) | The lab notebook: text, code and outputs, run cell by cell |
+| [notes.md](notes.md) | The whole lab as one readable Markdown document (text, code, outputs, including the regex symbol reference table) |
 
 ## Topics covered
 
 - Regex use cases and the main symbols: anchors, quantifiers, character classes, sets
-- `search`, `match`, `findall`, `sub`
-- Tokenization (sentence and word), lower casing
-- Stemming with Porter and Snowball; lemmatization with WordNet and POS tags
-- Stop words: why to remove them, when not to (sentiment analysis), spaCy vs NLTK lists
+- `re.search`, `re.match`, `re.findall`, `re.sub`
+- Tokenization (sentence and word) with NLTK, compared with `str.split`; lower casing
+- Stemming with Porter and Snowball, and a comparison of the two
+- Lemmatization with WordNet, with and without a part-of-speech tag
+- Stop words: why to remove them, when not to (sentiment analysis), spaCy vs NLTK lists, adding and removing stop words in spaCy
 
 ## Tasks
 
@@ -42,5 +31,5 @@ Two parts. The first covers regular expressions with Python's `re` module. The s
 pip install nltk spacy
 python -m spacy download en_core_web_sm
 python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab'); nltk.download('wordnet'); nltk.download('stopwords')"
-python code/01_search.py
+jupyter notebook Lab2_Text_Preprocessing_and_Regex.ipynb
 ```

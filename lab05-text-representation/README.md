@@ -6,20 +6,17 @@ How to turn text into numbers a model can use. Two techniques are covered: TF-ID
 
 | File | Content |
 |------|---------|
-| [Lab5_Text_Representation.ipynb](Lab5_Text_Representation.ipynb) | Original notebook |
-| [notes.md](notes.md) | The whole lab as one readable document: explanations, formulas, code and outputs |
-| [images/](images/) | Figures referenced from the notes |
-| [code/01_tf-idf.py](code/01_tf-idf.py) | `TfidfVectorizer` on three short documents, shown as a DataFrame |
-| [code/02_cosine-similarity.py](code/02_cosine-similarity.py) | TF-IDF vectors plus `cosine_similarity` between documents |
-| [code/03_word2vec.py](code/03_word2vec.py) | Tokenize a news dataset, train a skip-gram `Word2Vec`, query `wv.similarity` and `wv.most_similar` |
+| [Lab5_Text_Representation.ipynb](Lab5_Text_Representation.ipynb) | The lab notebook: text, code and outputs, run cell by cell |
+| [notes.md](notes.md) | The whole lab as one readable Markdown document (text, formulas, code, outputs) |
+| [images/](images/) | Figures used in the lab |
 | [dataset/simpsons_script_lines.csv](dataset/simpsons_script_lines.csv) | The Simpsons script lines used in the tasks (columns: `raw_character_text`, `spoken_words`) |
 
 ## Topics covered
 
 - Embeddings: representing words as real-valued vectors
-- TF-IDF: term frequency times inverse document frequency, discounting common words
-- Cosine similarity: dot product over the product of vector lengths, 1 = same direction, 0 = orthogonal
-- Word2Vec: two-layer neural network, CBOW vs skip-gram architectures
+- TF-IDF: term frequency times inverse document frequency, discounting common words; `TfidfVectorizer` shown as a DataFrame
+- Cosine similarity: dot product over the product of vector lengths, 1 = same direction, 0 = orthogonal; `cosine_similarity` between documents
+- Word2Vec: two-layer neural network, CBOW vs skip-gram; training `gensim.models.Word2Vec` on a news dataset and querying `wv.similarity` and `wv.most_similar`
 
 ## Tasks
 
@@ -33,7 +30,7 @@ How to turn text into numbers a model can use. Two techniques are covered: TF-ID
 
 ```bash
 pip install pandas scikit-learn nltk gensim
-python code/01_tf-idf.py
+jupyter notebook Lab5_Text_Representation.ipynb
 ```
 
 The Word2Vec example loads `True.csv` from the [Fake and Real News](https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset) dataset (the notebook uses the Colab path `/content/True.csv`). The Simpsons dataset for the tasks is included in `dataset/`.

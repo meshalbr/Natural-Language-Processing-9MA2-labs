@@ -1,7 +1,7 @@
 # Lab 3 - N-Grams
 
 This file is the complete lab as a readable document: the explanations, the code, and the printed outputs, in the same order as the notebook [Lab3_N_Grams.ipynb](Lab3_N_Grams.ipynb).
-The same code is also available as small runnable files in the [code/](code/) folder.
+Open the notebook to run the cells yourself.
 
 ---
 

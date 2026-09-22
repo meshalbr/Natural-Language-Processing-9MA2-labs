@@ -6,11 +6,9 @@ An overview lab: what NLP is, why it is hard, common text file types, the main N
 
 | File | Content |
 |------|---------|
-| [Lab1_Introduction_to_NLP.ipynb](Lab1_Introduction_to_NLP.ipynb) | Original notebook |
-| [notes.md](notes.md) | The whole lab as one readable document: explanations, figures, code and outputs |
-| [code/01_what-are-corpus-corpora.py](code/01_what-are-corpus-corpora.py) | Install and import NLTK |
-| [code/02_load-imdb-dataset.py](code/02_load-imdb-dataset.py) | Download the IMDB reviews dataset with `kagglehub`, load it with pandas, inspect it (`describe`, `info`, class distribution) |
-| [images/](images/) | Figures referenced from the notes |
+| [Lab1_Introduction_to_NLP.ipynb](Lab1_Introduction_to_NLP.ipynb) | The lab notebook: text, code and outputs, run cell by cell |
+| [notes.md](notes.md) | The whole lab as one readable Markdown document (text, figures, code, outputs) |
+| [images/](images/) | Figures used in the lab |
 | [dataset/README.md](dataset/README.md) | Course link to the dataset files |
 
 ## Topics covered
@@ -21,6 +19,7 @@ An overview lab: what NLP is, why it is hard, common text file types, the main N
 - NLTK and the idea of a corpus; Arabic libraries (Camel-Tools, PyArabic, Farasa)
 - NLP applications: information extraction, machine translation, sentiment analysis
 - The NLP pipeline: acquisition, preprocessing, feature extraction, model building
+- Loading the IMDB reviews dataset with `kagglehub` and inspecting it with pandas (`head`, `describe`, `info`, class distribution)
 
 ## Tasks
 
@@ -31,7 +30,7 @@ An overview lab: what NLP is, why it is hard, common text file types, the main N
 
 ```bash
 pip install nltk pandas kagglehub
-python code/02_load-imdb-dataset.py
+jupyter notebook Lab1_Introduction_to_NLP.ipynb
 ```
 
-The dataset used in the notebook is the [IMDB Dataset of 50K Movie Reviews](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews). Place `IMDB Dataset.csv` next to the script or update the path in the code.
+The dataset used in the notebook is the [IMDB Dataset of 50K Movie Reviews](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews). Place `IMDB Dataset.csv` next to the notebook or update the path in the loading cell.
