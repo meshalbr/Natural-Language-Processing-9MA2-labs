@@ -23,3 +23,6 @@ Thumbs.db
 **/dataset/True.csv
 **/dataset/Fake.csv
 **/dataset/Amazon_Unlocked_Mobile.csv
+
+# Model trained in Lab 9 Task 3 (rebuild it by running the notebook)
+**/custom_ner_model/

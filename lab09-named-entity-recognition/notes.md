@@ -147,6 +147,7 @@ Alignment Tags: ['B-ORG', 'L-ORG', 'O', 'O', 'O', 'B-PERSON', 'L-PERSON', 'O', '
 
 ```python
 # Load and use the custom model for entity recognition
+# (the model is trained and saved in Task 3 below; run that task first)
 custom_nlp = spacy.load("custom_ner_model")
 doc2 = custom_nlp(text)
 
@@ -169,8 +170,60 @@ Output:
 
 2. Print the details of each entity in the sentence provided by the user.
 
+**Step 1 - A function that prints the details of every entity.** For each entity: text, label with its explanation, token positions and character positions.
+
 ```python
-# your solution here
+def show_entities(sentence):
+    doc = nlp(sentence)
+    if not doc.ents:
+        print("No named entities found.")
+    for ent in doc.ents:
+        print(f"Entity: {ent.text}")
+        print(f"   Label      : {ent.label_} ({spacy.explain(ent.label_)})")
+        print(f"   Start token: {ent.start}, End token: {ent.end}")
+        print(f"   Characters : {ent.start_char} to {ent.end_char}")
+```
+
+**Step 2 - Ask the user for a sentence and show its entities.** `input()` reads from the keyboard. When the notebook is run without a keyboard (automatic execution) a default sentence is used instead, so the cell still works.
+
+```python
+try:
+    sentence = input("Enter a sentence: ")
+except Exception:
+    sentence = "Meshal studied NLP at Imam Abdulrahman Bin Faisal University in Dammam in November 2026 and paid 50 dollars for a book by O'Reilly."
+    print("Enter a sentence:", sentence)
+
+show_entities(sentence)
+```
+
+Output:
+
+```text
+Enter a sentence: Meshal studied NLP at Imam Abdulrahman Bin Faisal University in Dammam in November 2026 and paid 50 dollars for a book by O'Reilly.
+Entity: NLP
+   Label      : ORG (Companies, agencies, institutions, etc.)
+   Start token: 2, End token: 3
+   Characters : 15 to 18
+Entity: Imam Abdulrahman Bin Faisal University
+   Label      : ORG (Companies, agencies, institutions, etc.)
+   Start token: 4, End token: 9
+   Characters : 22 to 60
+Entity: Dammam
+   Label      : GPE (Countries, cities, states)
+   Start token: 10, End token: 11
+   Characters : 64 to 70
+Entity: November 2026
+   Label      : DATE (Absolute or relative dates or periods)
+   Start token: 12, End token: 14
+   Characters : 74 to 87
+Entity: 50 dollars
+   Label      : MONEY (Monetary values, including unit)
+   Start token: 16, End token: 18
+   Characters : 97 to 107
+Entity: O'Reilly
+   Label      : ORG (Companies, agencies, institutions, etc.)
+   Start token: 22, End token: 23
+   Characters : 122 to 130
 ```
 
 ### Task 2
@@ -185,8 +238,101 @@ Use the paragraph below to answer the following questions:
 
 3. Visualize the entities in the paragraph.
 
+**Step 1 - Run the pre-trained model on the paragraph** and list what it finds.
+
 ```python
-# your solution here
+from spacy.tokens import Span
+from collections import Counter
+
+paragraph = ("This agreement is made and entered into by and between 'Abc & Co.' and 'Bcd LLC' for term 1 year "
+             "starting from April 1, 2020, hereinafter collectively referred to as the Parties. Samuel P. Jackson "
+             "in the place (New York) and on the date written below, with the following terms and conditions.")
+
+doc = nlp(paragraph)
+
+print("Entities found by the pre-trained model:")
+for ent in doc.ents:
+    print(f"   {ent.text!r:22} {ent.label_}")
+```
+
+Output:
+
+```text
+Entities found by the pre-trained model:
+   "between 'Abc & Co.'"  ORG
+   "Bcd LLC'"             WORK_OF_ART
+   '1 year'               DATE
+   'April 1, 2020'        DATE
+   'Samuel P. Jackson'    PERSON
+   'New York'             GPE
+```
+
+**Step 2 - Add the entities that were missed (question 1).** The entities we expect are listed with their labels; any that the model did not find is turned into a `Span` with `char_span` and added with `doc.set_ents` (existing entities that overlap the new one are dropped).
+
+```python
+wanted = {"Abc & Co.": "ORG", "Bcd LLC": "ORG", "Samuel P. Jackson": "PERSON", "New York": "GPE"}
+found_texts = {ent.text for ent in doc.ents}
+
+new_spans = []
+for entity_text, label in wanted.items():
+    if entity_text not in found_texts:
+        start_char = paragraph.find(entity_text)
+        new_span = doc.char_span(start_char, start_char + len(entity_text), label=label)
+        if new_span is not None:
+            new_spans.append(new_span)
+            print(f"Adding missing entity: {entity_text!r} as {label}")
+
+if new_spans:
+    kept = [ent for ent in doc.ents if not any(ent.start < s.end and s.start < ent.end for s in new_spans)]
+    doc.set_ents(kept + new_spans)
+
+print("\nEntities after the correction:")
+for ent in doc.ents:
+    print(f"   {ent.text!r:22} {ent.label_}")
+```
+
+Output:
+
+```text
+Adding missing entity: 'Abc & Co.' as ORG
+Adding missing entity: 'Bcd LLC' as ORG
+
+Entities after the correction:
+   'Abc & Co.'            ORG
+   'Bcd LLC'              ORG
+   '1 year'               DATE
+   'April 1, 2020'        DATE
+   'Samuel P. Jackson'    PERSON
+   'New York'             GPE
+```
+
+**Step 3 - Count PERSON and ORG (question 2).** `Counter` over the labels of the corrected entities.
+
+```python
+counts = Counter(ent.label_ for ent in doc.ents)
+print("PERSON count:", counts["PERSON"])
+print("ORG count   :", counts["ORG"])
+```
+
+Output:
+
+```text
+PERSON count: 1
+ORG count   : 2
+```
+
+**Step 4 - Visualize the entities (question 3)** with displaCy in entity style.
+
+```python
+from spacy import displacy
+
+displacy.render(doc, style="ent", jupyter=True)
+```
+
+Output:
+
+```text
+<IPython.core.display.HTML object>
 ```
 
 ### Task 3: Training a Custom NER Model
@@ -197,6 +343,132 @@ text = "Microsoft was founded by Bill Gates and Paul Allen in Albuquerque, New M
 3. Save the trained model in a folder named `custom_ner_model`.
 5. Load the saved model and use it to identify named entities in a sentence.
 
+**Step 1 - The text and its annotations.** Each entity is given as `(start_char, end_char, label)`. The helper `span` finds the character positions so they are not typed by hand.
+
 ```python
-# your solution here
+import random
+from spacy.training import Example
+
+text = "Microsoft was founded by Bill Gates and Paul Allen in Albuquerque, New Mexico. It is known for its Windows operating system and Office software products."
+
+def span(s):
+    start = text.find(s)
+    return (start, start + len(s))
+
+annotations = {"entities": [
+    span("Microsoft")   + ("ORG",),
+    span("Bill Gates")  + ("PERSON",),
+    span("Paul Allen")  + ("PERSON",),
+    span("Albuquerque") + ("GPE",),
+    span("New Mexico")  + ("GPE",),
+    span("Windows")     + ("PRODUCT",),
+    span("Office")      + ("PRODUCT",),
+]}
+annotations
+```
+
+Output:
+
+```text
+{'entities': [(0, 9, 'ORG'),
+  (25, 35, 'PERSON'),
+  (40, 50, 'PERSON'),
+  (54, 65, 'GPE'),
+  (67, 77, 'GPE'),
+  (99, 106, 'PRODUCT'),
+  (128, 134, 'PRODUCT')]}
+```
+
+**Step 2 - Create the training example with `Example.from_dict()`.** It pairs the tokenized text with the gold entities and aligns the character offsets with the tokens. A fresh copy of the English model is loaded so the lab's `nlp` is not modified.
+
+```python
+ner_nlp = spacy.load("en_core_web_sm")
+example = Example.from_dict(ner_nlp.make_doc(text), annotations)
+
+print("Aligned entity tags:", example.get_aligned("ENT_IOB", as_string=True))
+```
+
+Output:
+
+```text
+Aligned entity tags: [3, 2, 2, 2, 3, 1, 2, 3, 1, 2, 3, 2, 3, 1, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 3, 2, 2, 2]
+```
+
+**Step 3 - Train the NER component for 20 iterations.** The labels are registered on the `ner` pipe, the other pipes are disabled so only NER is updated, and `nlp.update` runs one training step per iteration (`drop=0.2` is dropout against overfitting).
+
+```python
+ner = ner_nlp.get_pipe("ner")
+for _, _, label in annotations["entities"]:
+    ner.add_label(label)
+
+other_pipes = [pipe for pipe in ner_nlp.pipe_names if pipe != "ner"]
+with ner_nlp.disable_pipes(*other_pipes):
+    optimizer = ner_nlp.resume_training()
+    for iteration in range(20):
+        random.seed(iteration)
+        losses = {}
+        ner_nlp.update([example], sgd=optimizer, drop=0.2, losses=losses)
+        if (iteration + 1) % 5 == 0:
+            print(f"Iteration {iteration + 1:2d}  loss = {losses['ner']:.3f}")
+```
+
+Output:
+
+```text
+Iteration  5  loss = 0.005
+Iteration 10  loss = 0.000
+Iteration 15  loss = 0.000
+Iteration 20  loss = 0.000
+```
+
+**Step 4 - Save the model.** `to_disk` writes the whole pipeline into the folder `custom_ner_model`.
+
+```python
+ner_nlp.to_disk("custom_ner_model")
+print("Model saved in the folder 'custom_ner_model'")
+```
+
+Output:
+
+```text
+Model saved in the folder 'custom_ner_model'
+```
+
+**Step 5 - Load the saved model and use it.** `spacy.load` reads the folder back; the model is tried on the training sentence and on a new sentence, and the entities are visualized with displaCy.
+
+```python
+from spacy import displacy
+
+custom_nlp = spacy.load("custom_ner_model")
+
+for sentence in [text, "Paul Allen left Microsoft and Bill Gates kept improving Windows and Office in New Mexico."]:
+    doc3 = custom_nlp(sentence)
+    print(sentence)
+    for ent in doc3.ents:
+        print(f"   {ent.text:14} {ent.label_}")
+    print()
+
+displacy.render(custom_nlp(text), style="ent", jupyter=True)
+```
+
+Output:
+
+```text
+Microsoft was founded by Bill Gates and Paul Allen in Albuquerque, New Mexico. It is known for its Windows operating system and Office software products.
+   Microsoft      ORG
+   Bill Gates     PERSON
+   Paul Allen     PERSON
+   Albuquerque    GPE
+   New Mexico     GPE
+   Windows        PRODUCT
+   Office         PRODUCT
+
+Paul Allen left Microsoft and Bill Gates kept improving Windows and Office in New Mexico.
+   Paul Allen     PERSON
+   Microsoft      ORG
+   Bill Gates     PERSON
+   Windows        PRODUCT
+   Office         PRODUCT
+   New Mexico     GPE
+<IPython.core.display.HTML object>
 ```

@@ -26,6 +26,8 @@ The attention mechanism on a small question-answering dataset. Questions are tok
 1. Understand attention weights (easy): modify Step 6 to visualize the attention weights for three different questions from the dataset, generate a bar chart for each, and identify the word with the highest attention weight in each question. Do the words with the highest weights appear important for understanding the question? Explain.
 2. Compare attention for similar questions (medium): select two questions with similar meanings but different wording, pass both through the trained model, visualize their attention weights and compare the words receiving the highest weights. Does the model focus on similar or different words, and what does this suggest about how attention works?
 
+All tasks are solved at the end of the notebook, step by step: a short explanation above each code cell, the code, its output, and a written answer where the task asks a question.
+
 ## Running
 
 ```bash
@@ -33,4 +35,4 @@ pip install pandas torch tensorflow matplotlib
 jupyter notebook Lab11_Attention_with_RNN.ipynb
 ```
 
-The notebook was written for Google Colab (`from google.colab import files`, path `/content/Lab_11_QnA_Dataset_Download.csv`). Locally, remove the Colab import and load `dataset/Lab_11_QnA_Dataset.csv` instead.
+The loading cell reads `dataset/Lab_11_QnA_Dataset.csv`, so the notebook runs from this folder as it is. On Google Colab, upload the file, use the path `/content/Lab_11_QnA_Dataset_Download.csv` and uncomment `from google.colab import files`.

@@ -27,6 +27,8 @@ The three transformer model families, each tried with a small Hugging Face model
 4. Short reflection (3 to 5 sentences): why is a decoder-only model suitable for a chatbot such as ChatGPT?
 5. Optional challenge: remove `set_seed(42)`, run the sampling cell several times with the same prompt, and explain why the outputs differ.
 
+All tasks are solved at the end of the notebook, step by step: a short explanation above each code cell, the code, its output, and a written answer where the task asks a question.
+
 ## Running
 
 ```bash

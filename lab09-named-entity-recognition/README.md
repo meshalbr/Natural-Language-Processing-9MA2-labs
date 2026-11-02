@@ -26,6 +26,8 @@ Named Entity Recognition (NER) with spaCy: recognizing people, organizations, lo
 2. For the paragraph "This agreement is made and entered into by and between 'Abc & Co.' and 'Bcd LLC' for term 1 year starting from April 1, 2020, hereinafter collectively referred to as the Parties. Samuel P. Jackson in the place (New York) and on the date written below, with the following terms and conditions.": find any entity that has not been identified and add it, count the PERSON and ORG entities, and visualize the entities.
 3. Training a custom NER model for `text = "Microsoft was founded by Bill Gates and Paul Allen in Albuquerque, New Mexico. It is known for its Windows operating system and Office software products."`: create a training example with `Example.from_dict()` from the text and annotations, train the NER model for 20 iterations, save it in a folder named `custom_ner_model`, then load the saved model and use it to identify named entities in a sentence.
 
+All tasks are solved at the end of the notebook, step by step: a short explanation above each code cell, the code, its output, and a written answer where the task asks a question.
+
 ## Running
 
 ```bash

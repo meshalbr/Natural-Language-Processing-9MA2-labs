@@ -27,6 +27,8 @@ A first neural network for text classification. Yelp restaurant reviews are clea
 1. Represent the reviews with Word2Vec instead of TF-IDF: tokenize the training and testing reviews, train a Word2Vec model on the training reviews with `vector_size=200`, `window=5`, `min_count=1`, `sg=1`, convert each review into a single vector, and convert the vectors into PyTorch tensors.
 2. Build a different neural network on the Word2Vec vectors: input layer, three hidden layers of 128, 64 and 32 neurons with ReLU, and one output neuron. Train it with `BCEWithLogitsLoss`, Adam, learning rate 0.001 and 15 epochs, then calculate the test accuracy.
 
+All tasks are solved at the end of the notebook, step by step: a short explanation above each code cell, the code, its output, and a written answer where the task asks a question.
+
 ## Running
 
 ```bash
@@ -34,4 +36,4 @@ pip install pandas scikit-learn torch gensim
 jupyter notebook Lab6_Deep_Learning_for_NLP.ipynb
 ```
 
-The notebook reads `07-yelp-dataset.txt` from the working directory (Colab upload); point the loading cell at `dataset/07-yelp-dataset.txt` to run it from this folder.
+The loading cell reads `dataset/07-yelp-dataset.txt`, so the notebook runs from this folder as it is (on Colab, upload the file and change the path to `07-yelp-dataset.txt`).

@@ -26,6 +26,8 @@ Part-of-speech (POS) tagging with NLTK and spaCy: the Penn Treebank tag set used
 2. Compare the explanation of the words "google" and "table" in: "Did you search on Google?", "Let us google it.", "The has placed the food on the table", "She plans to table a motion for debate in Parliament".
 3. Visualize the part of speech of each word in "I like to play football. I hated it in my childhood though" with `displacy.render(doc, style='dep', jupyter=True, options={'distance': 110})`.
 
+All tasks are solved at the end of the notebook, step by step: a short explanation above each code cell, the code, its output, and a written answer where the task asks a question.
+
 ## Running
 
 ```bash

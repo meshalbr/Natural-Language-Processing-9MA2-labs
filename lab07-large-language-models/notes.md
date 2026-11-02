@@ -18,7 +18,7 @@ Open the notebook to run the cells yourself.
 ## 1. Setup
 
 ```python
-!pip -q install transformers sentencepiece torch
+%pip -q install transformers sentencepiece torch
 ```
 
 ```python
@@ -30,6 +30,8 @@ print("Libraries loaded successfully!")
 Output:
 
 ```text
+D:\envs\nlp\Lib\site-packages\tqdm\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
 Libraries loaded successfully!
 ```
 
@@ -54,8 +56,13 @@ print(output[0]["generated_text"])
 Output:
 
 ```text
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]
-[transformers] Both `max_new_tokens` (=30) and `max_length`(=50) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+D:\envs\nlp\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\tools\hf-cache\hub\models--distilgpt2. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+D:\envs\nlp\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\tools\hf-cache\hub. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
 Natural language processing is a common feature of the language processing process.
 ```
 
@@ -88,8 +95,12 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 Output:
 
 ```text
-Loading weights:   0%|          | 0/190 [00:00<?, ?it/s]
+D:\envs\nlp\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\tools\hf-cache\hub\models--google--flan-t5-small. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
 [transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+D:\envs\nlp\Lib\site-packages\transformers\generation\utils.py:1969: UserWarning: Using the model-agnostic default `max_length` (=21) to control the generation length. We recommend setting `max_new_tokens` to control the maximum length of the generation.
+  warnings.warn(
 Je s'agissant de la technologie de linguage naturelle.
 ```
 
@@ -115,7 +126,9 @@ print(result)
 Output:
 
 ```text
-Loading weights:   0%|          | 0/104 [00:00<?, ?it/s]
+D:\envs\nlp\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\tools\hf-cache\hub\models--distilbert-base-uncased-finetuned-sst-2-english. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
 [{'label': 'POSITIVE', 'score': 0.999778687953949}]
 ```
 
@@ -133,8 +146,29 @@ For each task below, choose the most suitable model family:
 4. Named Entity Recognition
 5. Text summarization
 
+**Answer.** The rule: *understand or classify text* → encoder-only; *text in, different text out* → encoder-decoder; *continue or create text* → decoder-only.
+
 ```python
-# your solution here
+tasks = {
+    "Sentiment classification":   "Encoder-only (BERT, RoBERTa, DistilBERT): read the whole input, output a class",
+    "Machine translation":        "Encoder-decoder (T5, BART, MarianMT): read the source sentence, generate the target",
+    "Open-ended text generation": "Decoder-only (GPT family): predict the next token from the previous ones",
+    "Named Entity Recognition":   "Encoder-only (BERT): one label per token needs a full bidirectional view of the sentence",
+    "Text summarization":         "Encoder-decoder (T5, BART, PEGASUS): long text in, short text out",
+}
+
+for task, family in tasks.items():
+    print(f"{task:28s} -> {family}")
+```
+
+Output:
+
+```text
+Sentiment classification     -> Encoder-only (BERT, RoBERTa, DistilBERT): read the whole input, output a class
+Machine translation          -> Encoder-decoder (T5, BART, MarianMT): read the source sentence, generate the target
+Open-ended text generation   -> Decoder-only (GPT family): predict the next token from the previous ones
+Named Entity Recognition     -> Encoder-only (BERT): one label per token needs a full bidirectional view of the sentence
+Text summarization           -> Encoder-decoder (T5, BART, PEGASUS): long text in, short text out
 ```
 
 ## Task 2 — Encoder-only Model
@@ -149,8 +183,31 @@ I enjoyed learning about transformers.
 
 Print the predicted label and score for each sentence.
 
+**Step 1 - The three sentences.** The sentiment classifier is the DistilBERT pipeline created in Part C. A pipeline accepts a list, so all three sentences are classified in one call.
+
 ```python
-# your solution here
+sentences = [
+    "The movie was excellent.",
+    "The lecture was difficult to understand.",
+    "I enjoyed learning about transformers.",
+]
+
+results = classifier(sentences)
+```
+
+**Step 2 - Print the label and the score.** Each result is a dictionary with the predicted label (POSITIVE or NEGATIVE) and the model's confidence between 0 and 1.
+
+```python
+for sentence, result in zip(sentences, results):
+    print(f"{sentence:45s} -> {result['label']:8s} (score = {result['score']:.4f})")
+```
+
+Output:
+
+```text
+The movie was excellent.                      -> POSITIVE (score = 0.9999)
+The lecture was difficult to understand.      -> NEGATIVE (score = 0.9997)
+I enjoyed learning about transformers.        -> POSITIVE (score = 0.9997)
 ```
 
 ## Task 3 — Encoder–Decoder Model
@@ -159,8 +216,43 @@ Use the FLAN-T5 model to perform the following:
 
 - Summarize a short paragraph.
 
+**Step 1 - Write the paragraph to summarize.** FLAN-T5 is an instruction-tuned model: we tell it what to do inside the prompt, so the prompt starts with `Summarize:` followed by the text.
+
 ```python
-# your solution here
+paragraph = (
+    "Natural language processing is a field of artificial intelligence that gives computers the ability "
+    "to read, understand and generate human language. Early systems relied on hand-written rules, later "
+    "systems used statistical models trained on large corpora, and today most systems are built on "
+    "transformer neural networks such as BERT, T5 and GPT. These models are pre-trained on huge amounts "
+    "of text and then adapted to tasks such as translation, question answering and summarization."
+)
+
+prompt = "Summarize: " + paragraph
+print("Words in the paragraph:", len(paragraph.split()))
+```
+
+Output:
+
+```text
+Words in the paragraph: 73
+```
+
+**Step 2 - Encode, generate, decode.** The tokenizer turns the prompt into token ids, the encoder reads them, the decoder generates the summary tokens (`max_new_tokens=60` caps the length), and the tokenizer turns the ids back into text.
+
+```python
+inputs = tokenizer(prompt, return_tensors="pt")          # text -> token ids
+output = model.generate(**inputs, max_new_tokens=60)      # encoder reads, decoder writes
+summary = tokenizer.decode(output[0], skip_special_tokens=True)   # token ids -> text
+
+print("Summary:", summary)
+print("Words in the summary:", len(summary.split()))
+```
+
+Output:
+
+```text
+Summary: Computers use natural language processing to learn and understand the language.
+Words in the summary: 11
 ```
 
 ## Task 5 — Short Reflection
@@ -168,6 +260,8 @@ Use the FLAN-T5 model to perform the following:
 Answer in 3–5 sentences:
 
 **Why is a decoder-only model suitable for a chatbot such as ChatGPT?**
+
+**Answer.** A chatbot has to produce an open-ended reply one word after another, and that is exactly what a decoder-only model is trained to do: predict the next token given everything written so far. The whole conversation (system prompt, the user's messages, the model's earlier replies) is simply the context, so the same mechanism that completes a sentence also continues a dialogue, and no separate encoder is needed. Because the decoder is autoregressive it can keep generating until it decides to stop, which allows answers of any length, and the same model can be fine-tuned with instruction data and human feedback (as GPT-3.5 and GPT-4 were) to follow instructions. Encoder-only models cannot generate text at all, and an encoder-decoder adds an encoder that brings little when the input is just the previous dialogue text.
 
 # Optional Challenge
 
@@ -186,3 +280,23 @@ and run the sampling cell multiple times.
 Why do you sometimes get different outputs even when the prompt is the same?
 
 **Hint:** Sampling introduces randomness when choosing the next token.
+
+**Step 1 - Generate with sampling, three times.** `do_sample=True` makes the model pick the next token randomly from its predicted distribution (`top_k` keeps the 50 most likely tokens, `temperature` controls how random the choice is). No `set_seed`, so every run can differ.
+
+```python
+prompt = "Natural language processing is"
+
+for run in range(3):
+    output = generator(prompt, max_new_tokens=20, do_sample=True, top_k=50, temperature=0.9)
+    print(f"Run {run + 1}: {output[0]['generated_text']}\n")
+```
+
+Output:
+
+```text
+Run 1: Natural language processing is done by selecting the language and selecting the language to handle processing.
+Run 2: Natural language processing is a commonly used tool to translate and interpret your language/language messages into English. To learn more about
+Run 3: Natural language processing is a multi-stage and multi-step process which requires a wide range of components including language processing,
+```
+
+**Answer.** With sampling the model does not take the single most probable next token; it draws the next token at random from the probability distribution it predicts. Each draw can land on a different word, and once one word differs the rest of the continuation changes with it, so the same prompt gives different texts. `set_seed(42)` fixes the random number generator, which is why the runs repeat exactly with the seed, and `do_sample=False` (greedy decoding) removes the randomness completely.

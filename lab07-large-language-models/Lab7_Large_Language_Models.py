@@ -19,7 +19,7 @@
 # ## 1. Setup
 
 # %%
-!pip -q install transformers sentencepiece torch
+%pip -q install transformers sentencepiece torch
 
 # %%
 from transformers import pipeline, set_seed
@@ -104,7 +104,20 @@ print(result)
 # 4. Named Entity Recognition
 # 5. Text summarization
 
+# %% [markdown]
+# **Answer.** The rule: *understand or classify text* → encoder-only; *text in, different text out* → encoder-decoder; *continue or create text* → decoder-only.
+
 # %%
+tasks = {
+    "Sentiment classification":   "Encoder-only (BERT, RoBERTa, DistilBERT): read the whole input, output a class",
+    "Machine translation":        "Encoder-decoder (T5, BART, MarianMT): read the source sentence, generate the target",
+    "Open-ended text generation": "Decoder-only (GPT family): predict the next token from the previous ones",
+    "Named Entity Recognition":   "Encoder-only (BERT): one label per token needs a full bidirectional view of the sentence",
+    "Text summarization":         "Encoder-decoder (T5, BART, PEGASUS): long text in, short text out",
+}
+
+for task, family in tasks.items():
+    print(f"{task:28s} -> {family}")
 
 # %% [markdown]
 # ## Task 2 — Encoder-only Model
@@ -119,7 +132,24 @@ print(result)
 #
 # Print the predicted label and score for each sentence.
 
+# %% [markdown]
+# **Step 1 - The three sentences.** The sentiment classifier is the DistilBERT pipeline created in Part C. A pipeline accepts a list, so all three sentences are classified in one call.
+
 # %%
+sentences = [
+    "The movie was excellent.",
+    "The lecture was difficult to understand.",
+    "I enjoyed learning about transformers.",
+]
+
+results = classifier(sentences)
+
+# %% [markdown]
+# **Step 2 - Print the label and the score.** Each result is a dictionary with the predicted label (POSITIVE or NEGATIVE) and the model's confidence between 0 and 1.
+
+# %%
+for sentence, result in zip(sentences, results):
+    print(f"{sentence:45s} -> {result['label']:8s} (score = {result['score']:.4f})")
 
 # %% [markdown]
 # ## Task 3 — Encoder–Decoder Model
@@ -128,7 +158,31 @@ print(result)
 #
 # - Summarize a short paragraph.
 
+# %% [markdown]
+# **Step 1 - Write the paragraph to summarize.** FLAN-T5 is an instruction-tuned model: we tell it what to do inside the prompt, so the prompt starts with `Summarize:` followed by the text.
+
 # %%
+paragraph = (
+    "Natural language processing is a field of artificial intelligence that gives computers the ability "
+    "to read, understand and generate human language. Early systems relied on hand-written rules, later "
+    "systems used statistical models trained on large corpora, and today most systems are built on "
+    "transformer neural networks such as BERT, T5 and GPT. These models are pre-trained on huge amounts "
+    "of text and then adapted to tasks such as translation, question answering and summarization."
+)
+
+prompt = "Summarize: " + paragraph
+print("Words in the paragraph:", len(paragraph.split()))
+
+# %% [markdown]
+# **Step 2 - Encode, generate, decode.** The tokenizer turns the prompt into token ids, the encoder reads them, the decoder generates the summary tokens (`max_new_tokens=60` caps the length), and the tokenizer turns the ids back into text.
+
+# %%
+inputs = tokenizer(prompt, return_tensors="pt")          # text -> token ids
+output = model.generate(**inputs, max_new_tokens=60)      # encoder reads, decoder writes
+summary = tokenizer.decode(output[0], skip_special_tokens=True)   # token ids -> text
+
+print("Summary:", summary)
+print("Words in the summary:", len(summary.split()))
 
 # %% [markdown]
 #
@@ -137,6 +191,9 @@ print(result)
 # Answer in 3–5 sentences:
 #
 # **Why is a decoder-only model suitable for a chatbot such as ChatGPT?**
+
+# %% [markdown]
+# **Answer.** A chatbot has to produce an open-ended reply one word after another, and that is exactly what a decoder-only model is trained to do: predict the next token given everything written so far. The whole conversation (system prompt, the user's messages, the model's earlier replies) is simply the context, so the same mechanism that completes a sentence also continues a dialogue, and no separate encoder is needed. Because the decoder is autoregressive it can keep generating until it decides to stop, which allows answers of any length, and the same model can be fine-tuned with instruction data and human feedback (as GPT-3.5 and GPT-4 were) to follow instructions. Encoder-only models cannot generate text at all, and an encoder-decoder adds an encoder that brings little when the input is just the previous dialogue text.
 
 # %% [markdown]
 # # Optional Challenge
@@ -156,3 +213,16 @@ print(result)
 # Why do you sometimes get different outputs even when the prompt is the same?
 #
 # **Hint:** Sampling introduces randomness when choosing the next token.
+
+# %% [markdown]
+# **Step 1 - Generate with sampling, three times.** `do_sample=True` makes the model pick the next token randomly from its predicted distribution (`top_k` keeps the 50 most likely tokens, `temperature` controls how random the choice is). No `set_seed`, so every run can differ.
+
+# %%
+prompt = "Natural language processing is"
+
+for run in range(3):
+    output = generator(prompt, max_new_tokens=20, do_sample=True, top_k=50, temperature=0.9)
+    print(f"Run {run + 1}: {output[0]['generated_text']}\n")
+
+# %% [markdown]
+# **Answer.** With sampling the model does not take the single most probable next token; it draws the next token at random from the probability distribution it predicts. Each draw can land on a different word, and once one word differs the rest of the continuation changes with it, so the same prompt gives different texts. `set_seed(42)` fixes the random number generator, which is why the runs repeat exactly with the seed, and `do_sample=False` (greedy decoding) removes the randomness completely.

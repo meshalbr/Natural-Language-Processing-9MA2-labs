@@ -318,7 +318,6 @@ Output:
 
 ```text
 Mobile is very handy. Packed with good performances and nice camera. This is my first iPhone. Very good experience with Apple. Battery is worst. I am hardly getting 5 hours screen on time. Positive thing is I came to know how many hours I was spending on my mobile. Because of poor battery now I am only using mobile for 4 hours a day.
-
 ('handy', 'JJ')
 ============================
 ('good', 'JJ')
@@ -356,8 +355,64 @@ for word in sen:
  print(f'{word.text:{12}} {word.pos_:{10}} {word.tag_:{8}} {spacy.explain(word.tag_)}')
 ```
 
+**Step 1 - Create the document and find "play".** Instead of counting the position by hand, we search the tokens for the text "play" and keep its index.
+
 ```python
-# your solution here
+sen = nlp(u"I like watching football matches. I do not know how to play it though")
+
+play_index = [i for i, token in enumerate(sen) if token.text == "play"][0]
+play = sen[play_index]
+print("'play' is token number", play_index)
+```
+
+Output:
+
+```text
+'play' is token number
+ 12
+```
+
+**Step 2 - Questions 1 to 3.** The coarse tag (`pos_`), the fine-grained tag (`tag_`) and the meaning of the fine tag (`spacy.explain`).
+
+```python
+print("1. POS tag of 'play':         ", play.pos_)
+print("2. Fine-grained tag of 'play':", play.tag_)
+print("3. Meaning of the tag:        ", spacy.explain(play.tag_))
+```
+
+Output:
+
+```text
+1. POS tag of 'play':          VERB
+2. Fine-grained tag of 'play': VB
+3. Meaning of the tag:         verb, base form
+```
+
+**Step 3 - Question 4.** Every word of the sentence with its text, coarse tag, fine tag and explanation, using the hint's format string.
+
+```python
+for word in sen:
+    print(f'{word.text:{12}} {word.pos_:{10}} {word.tag_:{8}} {spacy.explain(word.tag_)}')
+```
+
+Output:
+
+```text
+I            PRON       PRP      pronoun, personal
+like         VERB       VBP      verb, non-3rd person singular present
+watching     VERB       VBG      verb, gerund or present participle
+football     NOUN       NN       noun, singular or mass
+matches      NOUN       NNS      noun, plural
+.            PUNCT      .        punctuation mark, sentence closer
+I            PRON       PRP      pronoun, personal
+do           AUX        VBP      verb, non-3rd person singular present
+not          PART       RB       adverb
+know         VERB       VB       verb, base form
+how          SCONJ      WRB      wh-adverb
+to           PART       TO       infinitival "to"
+play         VERB       VB       verb, base form
+it           PRON       PRP      pronoun, personal
+though       ADV        RB       adverb
 ```
 
 ### Task 2
@@ -371,9 +426,44 @@ Compare the explanation of the words “google”  and “table” in the follow
 **Hint:**
 `word = sen[#]`
 
+**Step 1 - The four sentences and the word to look at in each.** We pair every sentence with the target word so the loop can find it by text instead of by a hand-counted index.
+
 ```python
-# your solution here
+sentences = [
+    ("Did you search on Google?", "Google"),
+    ("Let us google it.", "google"),
+    ("The has placed the food on the table", "table"),
+    ("She plans to table a motion for debate in Parliament", "table"),
+]
 ```
+
+**Step 2 - Compare the tags.** For each sentence, tag it with spaCy, pick the target token and print its coarse tag, fine tag and the explanation.
+
+```python
+for text, target in sentences:
+    sen = nlp(text)
+    word = [token for token in sen if token.text == target][0]
+    print(text)
+    print(f"   '{word.text}': {word.pos_:6} {word.tag_:5} -> {spacy.explain(word.tag_)}\n")
+```
+
+Output:
+
+```text
+Did you search on Google?
+   'Google': PROPN  NNP   -> noun, proper singular
+
+Let us google it.
+   'google': VERB   VB    -> verb, base form
+
+The has placed the food on the table
+   'table': NOUN   NN    -> noun, singular or mass
+
+She plans to table a motion for debate in Parliament
+   'table': VERB   VB    -> verb, base form
+```
+
+**Observation.** "Google" in the first sentence is a proper noun (PROPN / NNP, the company) but "google" in "Let us google it" is a verb (VERB / VB). "table" is a common noun (NOUN / NN, the furniture) in the third sentence and a verb (VERB / VB, after the infinitive marker "to") in the fourth. spaCy decides the tag from the context of the sentence, not from the word alone.
 
 ### Task 3
 
@@ -383,6 +473,42 @@ Visualize the part of speech of each word in the sentence below.
 
 **Hint:** `displacy.render(doc, style='dep', jupyter=True, options={'distance': 110})`
 
+**Step 1 - Tag the sentence.** Create the spaCy document and print every word with its coarse tag, fine tag and explanation, so the picture below can be read.
+
 ```python
-# your solution here
+doc = nlp(u"I like to play football. I hated it in my childhood though")
+
+for token in doc:
+    print(f'{token.text:{12}} {token.pos_:{8}} {token.tag_:{6}} {spacy.explain(token.tag_)}')
+```
+
+Output:
+
+```text
+I            PRON     PRP    pronoun, personal
+
+like         VERB     VBP    verb, non-3rd person singular present
+to           PART     TO     infinitival "to"
+play         VERB     VB     verb, base form
+football     NOUN     NN     noun, singular or mass
+.            PUNCT    .      punctuation mark, sentence closer
+I            PRON     PRP    pronoun, personal
+hated        VERB     VBD    verb, past tense
+it           PRON     PRP    pronoun, personal
+in           ADP      IN     conjunction, subordinating or preposition
+my           PRON     PRP$   pronoun, possessive
+childhood    NOUN     NN     noun, singular or mass
+though       SCONJ    IN     conjunction, subordinating or preposition
+```
+
+**Step 2 - Visualize with displaCy.** `style='dep'` draws the words with their POS tags and the dependency arrows between them; `distance` sets the horizontal spacing.
+
+```python
+displacy.render(doc, style='dep', jupyter=True, options={'distance': 110})
+```
+
+Output:
+
+```text
+<IPython.core.display.HTML object>
 ```

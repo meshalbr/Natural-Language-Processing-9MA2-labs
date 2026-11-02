@@ -282,7 +282,30 @@ for sent in sent_tokenize(text):
 #  print(f'{word.text:{12}} {word.pos_:{10}} {word.tag_:{8}} {spacy.explain(word.tag_)}')
 # ```
 
+# %% [markdown]
+# **Step 1 - Create the document and find "play".** Instead of counting the position by hand, we search the tokens for the text "play" and keep its index.
+
 # %%
+sen = nlp(u"I like watching football matches. I do not know how to play it though")
+
+play_index = [i for i, token in enumerate(sen) if token.text == "play"][0]
+play = sen[play_index]
+print("'play' is token number", play_index)
+
+# %% [markdown]
+# **Step 2 - Questions 1 to 3.** The coarse tag (`pos_`), the fine-grained tag (`tag_`) and the meaning of the fine tag (`spacy.explain`).
+
+# %%
+print("1. POS tag of 'play':         ", play.pos_)
+print("2. Fine-grained tag of 'play':", play.tag_)
+print("3. Meaning of the tag:        ", spacy.explain(play.tag_))
+
+# %% [markdown]
+# **Step 3 - Question 4.** Every word of the sentence with its text, coarse tag, fine tag and explanation, using the hint's format string.
+
+# %%
+for word in sen:
+    print(f'{word.text:{12}} {word.pos_:{10}} {word.tag_:{8}} {spacy.explain(word.tag_)}')
 
 # %% [markdown]
 # ### Task 2
@@ -296,7 +319,29 @@ for sent in sent_tokenize(text):
 # **Hint:**
 # `word = sen[#]`
 
+# %% [markdown]
+# **Step 1 - The four sentences and the word to look at in each.** We pair every sentence with the target word so the loop can find it by text instead of by a hand-counted index.
+
 # %%
+sentences = [
+    ("Did you search on Google?", "Google"),
+    ("Let us google it.", "google"),
+    ("The has placed the food on the table", "table"),
+    ("She plans to table a motion for debate in Parliament", "table"),
+]
+
+# %% [markdown]
+# **Step 2 - Compare the tags.** For each sentence, tag it with spaCy, pick the target token and print its coarse tag, fine tag and the explanation.
+
+# %%
+for text, target in sentences:
+    sen = nlp(text)
+    word = [token for token in sen if token.text == target][0]
+    print(text)
+    print(f"   '{word.text}': {word.pos_:6} {word.tag_:5} -> {spacy.explain(word.tag_)}\n")
+
+# %% [markdown]
+# **Observation.** "Google" in the first sentence is a proper noun (PROPN / NNP, the company) but "google" in "Let us google it" is a verb (VERB / VB). "table" is a common noun (NOUN / NN, the furniture) in the third sentence and a verb (VERB / VB, after the infinitive marker "to") in the fourth. spaCy decides the tag from the context of the sentence, not from the word alone.
 
 # %% [markdown]
 # ### Task 3
@@ -307,4 +352,17 @@ for sent in sent_tokenize(text):
 #
 # **Hint:** `displacy.render(doc, style='dep', jupyter=True, options={'distance': 110})`
 
+# %% [markdown]
+# **Step 1 - Tag the sentence.** Create the spaCy document and print every word with its coarse tag, fine tag and explanation, so the picture below can be read.
+
 # %%
+doc = nlp(u"I like to play football. I hated it in my childhood though")
+
+for token in doc:
+    print(f'{token.text:{12}} {token.pos_:{8}} {token.tag_:{6}} {spacy.explain(token.tag_)}')
+
+# %% [markdown]
+# **Step 2 - Visualize with displaCy.** `style='dep'` draws the words with their POS tags and the dependency arrows between them; `distance` sets the horizontal spacing.
+
+# %%
+displacy.render(doc, style='dep', jupyter=True, options={'distance': 110})

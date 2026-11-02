@@ -25,6 +25,8 @@ Machine translation and the neural (encoder-decoder) approach. A tiny English-Fr
 1. Understanding the model layers, in your own words: what the Embedding layer does to a word index; the role of the encoder LSTM; what the decoder LSTM does; why `softmax` is used in the final layer.
 2. Use case, English-French translation for a global e-commerce company that wants to translate product listings, customer reviews and other content for French-speaking customers. Dataset: [Language Translation (English-French)](https://www.kaggle.com/datasets/devicharith/language-translation-englishfrench) on Kaggle.
 
+All tasks are solved at the end of the notebook, step by step: a short explanation above each code cell, the code, its output, and a written answer where the task asks a question.
+
 ## Running
 
 ```bash
