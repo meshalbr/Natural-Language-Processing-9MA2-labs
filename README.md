@@ -12,6 +12,12 @@ Each lab lives in its own folder with the notebook (run it cell by cell), a Mark
 | 3 | [lab03-n-grams](lab03-n-grams/) | Unigrams, bigrams, trigrams, padding, MLE language model, perplexity | `nltk.lm`, `nltk.util.ngrams` |
 | 4 | [lab04-classification-and-evaluation](lab04-classification-and-evaluation/) | Sentiment analysis with TF-IDF features and an SVM classifier, evaluation metrics | `scikit-learn`, `pandas` |
 | 5 | [lab05-text-representation](lab05-text-representation/) | TF-IDF, cosine similarity, Word2Vec (skip-gram) embeddings | `scikit-learn`, `gensim` |
+| 6 | [lab06-deep-learning-for-nlp](lab06-deep-learning-for-nlp/) | Sentiment classification of Yelp reviews with a PyTorch feed-forward network on TF-IDF features; training loop, evaluation | `torch`, `scikit-learn` |
+| 7 | [lab07-large-language-models](lab07-large-language-models/) | Encoder-only, encoder-decoder and decoder-only transformers with DistilBERT, FLAN-T5 and DistilGPT-2 | `transformers` |
+| 8 | [lab08-part-of-speech-tagging](lab08-part-of-speech-tagging/) | POS tagging with NLTK and spaCy, coarse vs fine-grained tags, displaCy | `nltk`, `spacy` |
+| 9 | [lab09-named-entity-recognition](lab09-named-entity-recognition/) | NER with spaCy, entity labels, BILUO alignment, training a custom NER model | `spacy` |
+| 10 | [lab10-machine-translation](lab10-machine-translation/) | Neural machine translation with a Keras LSTM encoder-decoder (English to French) | `tensorflow` |
+| 11 | [lab11-attention-with-rnn](lab11-attention-with-rnn/) | Attention mechanism in a PyTorch RNN on a question-answer dataset, attention weight plots | `torch`, `tensorflow`, `matplotlib` |
 
 ## Folder layout
 
@@ -56,6 +62,9 @@ jupyter notebook lab02-text-preprocessing-and-regex/Lab2_Text_Preprocessing_and_
 | 4 (task) | Amazon Reviews of Unlocked Mobile Phones | [Kaggle](https://www.kaggle.com/datasets/PromptCloudHQ/amazon-reviews-unlocked-mobile-phones) |
 | 5 | Fake and Real News (True.csv) | [Kaggle](https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset) |
 | 5 (task) | The Simpsons script lines | included in `lab05-text-representation/dataset/simpsons_script_lines.csv` |
+| 6 | Yelp reviews (1000 labelled sentences) | included in `lab06-deep-learning-for-nlp/dataset/07-yelp-dataset.txt` |
+| 10 (task) | Language Translation (English-French) | [Kaggle](https://www.kaggle.com/datasets/devicharith/language-translation-englishfrench) |
+| 11 | Question-answer pairs (168 questions, 12 answer groups) | included in `lab11-attention-with-rnn/dataset/Lab_11_QnA_Dataset.csv` |
 
 Large Kaggle datasets are not committed to this repo. Download them and adjust the file path in the loading cell (the notebooks were written for Google Colab and use `/content/...` paths).
 
@@ -68,3 +77,9 @@ The lab notebooks were provided by the course instructor and originally publishe
 - Lab 3: https://github.com/MohammedMosuily/NLP_Lab3
 - Lab 4: https://github.com/MohammedMosuily/NLP_Lab4
 - Lab 5: https://github.com/MohammedMosuily/NLP_Lab5
+- Lab 6: https://github.com/MohammedMosuily/NLP_Lab6
+- Lab 7: https://github.com/MohammedMosuily/NLP_lab7
+- Lab 8: https://github.com/MohammedMosuily/NLP_lab8
+- Lab 9: https://github.com/MohammedMosuily/NLP_Lab9
+- Lab 10: https://github.com/MohammedMosuily/NLP_lab10
+- Lab 11: https://github.com/MohammedMosuily/NLP_lab11

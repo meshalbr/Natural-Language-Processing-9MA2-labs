@@ -7,3 +7,8 @@ scikit-learn
 gensim
 kagglehub
 emoji
+torch
+transformers
+sentencepiece
+tensorflow
+matplotlib
