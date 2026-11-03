@@ -26,3 +26,5 @@ Thumbs.db
 
 # Model trained in Lab 9 Task 3 (rebuild it by running the notebook)
 **/custom_ner_model/
+
+**/dataset/eng_-french.csv

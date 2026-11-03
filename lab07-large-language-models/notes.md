@@ -21,6 +21,12 @@ Open the notebook to run the cells yourself.
 %pip -q install transformers sentencepiece torch
 ```
 
+Output:
+
+```text
+Note: you may need to restart the kernel to use updated packages.
+```
+
 ```python
 from transformers import pipeline, set_seed
 
@@ -56,13 +62,6 @@ print(output[0]["generated_text"])
 Output:
 
 ```text
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-D:\envs\nlp\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\tools\hf-cache\hub\models--distilgpt2. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
-To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
-  warnings.warn(message)
-D:\envs\nlp\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\tools\hf-cache\hub. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
-To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
-  warnings.warn(message)
 Natural language processing is a common feature of the language processing process.
 ```
 
@@ -95,9 +94,6 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 Output:
 
 ```text
-D:\envs\nlp\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\tools\hf-cache\hub\models--google--flan-t5-small. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
-To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
-  warnings.warn(message)
 [transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
 D:\envs\nlp\Lib\site-packages\transformers\generation\utils.py:1969: UserWarning: Using the model-agnostic default `max_length` (=21) to control the generation length. We recommend setting `max_new_tokens` to control the maximum length of the generation.
   warnings.warn(
@@ -126,9 +122,6 @@ print(result)
 Output:
 
 ```text
-D:\envs\nlp\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\tools\hf-cache\hub\models--distilbert-base-uncased-finetuned-sst-2-english. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
-To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
-  warnings.warn(message)
 [{'label': 'POSITIVE', 'score': 0.999778687953949}]
 ```
 
@@ -294,9 +287,11 @@ for run in range(3):
 Output:
 
 ```text
-Run 1: Natural language processing is done by selecting the language and selecting the language to handle processing.
-Run 2: Natural language processing is a commonly used tool to translate and interpret your language/language messages into English. To learn more about
-Run 3: Natural language processing is a multi-stage and multi-step process which requires a wide range of components including language processing,
+Run 1: Natural language processing is a common feature in online education. The development of the language has been described in a paper published in
+Run 2: Natural language processing is a way to make sure that you are in a natural language that has an overall understanding of how to
+Run 3: Natural language processing is difficult. What does it mean?
+
+A common misconception is that there isn't enough
 ```
 
 **Answer.** With sampling the model does not take the single most probable next token; it draws the next token at random from the probability distribution it predicts. Each draw can land on a different word, and once one word differs the rest of the continuation changes with it, so the same prompt gives different texts. `set_seed(42)` fixes the random number generator, which is why the runs repeat exactly with the seed, and `do_sample=False` (greedy decoding) removes the randomness completely.
