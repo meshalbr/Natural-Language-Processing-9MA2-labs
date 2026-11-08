@@ -18,6 +18,7 @@ Each lab lives in its own folder with the notebook (run it cell by cell), a Mark
 | 9 | [lab09-named-entity-recognition](lab09-named-entity-recognition/) | NER with spaCy, entity labels, BILUO alignment, training a custom NER model | `spacy` |
 | 10 | [lab10-machine-translation](lab10-machine-translation/) | Neural machine translation with a Keras LSTM encoder-decoder (English to French) | `tensorflow` |
 | 11 | [lab11-attention-with-rnn](lab11-attention-with-rnn/) | Attention mechanism in a PyTorch RNN on a question-answer dataset, attention weight plots | `torch`, `tensorflow`, `matplotlib` |
+| 12 | [lab12-transformers](lab12-transformers/) | Transformers: tokenization, embeddings, self-attention and sentiment prediction with DistilBERT; BERT layers, heads and an attention matrix | `transformers`, `torch`, `matplotlib` |
 
 ## Folder layout
 
@@ -83,3 +84,4 @@ The lab notebooks were provided by the course instructor and originally publishe
 - Lab 9: https://github.com/MohammedMosuily/NLP_Lab9
 - Lab 10: https://github.com/MohammedMosuily/NLP_lab10
 - Lab 11: https://github.com/MohammedMosuily/NLP_lab11
+- Lab 12: https://github.com/MohammedMosuily/Lab12
